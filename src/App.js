@@ -1,9 +1,17 @@
 import React from 'react';
-// oi
+import Header from './components/Header';
+import Content from './components/Content';
+import Sidebar from './components/Sidebar';
 
 class App extends React.Component {
   render() {
-    return (<p>TrybeTunes</p>);
+    return (
+      <>
+        <Header />
+        <Content />
+        <Sidebar />
+      </>
+    );
   }
 }
 
