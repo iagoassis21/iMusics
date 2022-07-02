@@ -48,11 +48,12 @@ class Login extends React.Component {
     // Se você estiver vendo isso, me ajude a simplificar essa lógica, obg :D
     const { loginName, loading, firstLoad } = this.state;
     const showLoading = <Loading />;
-    const meuForm = (
-      <form>
+    const loginForm = (
+      <form className="formLogin">
         <label htmlFor="nameId">
           Insira seu nome
           <input
+            className="inputLogin"
             name="loginName"
             value={ loginName }
             onChange={ this.handleChange }
@@ -62,6 +63,7 @@ class Login extends React.Component {
           />
         </label>
         <button
+          className="loginBtn"
           disabled={ this.validateSubmitBtn() }
           onClick={ this.onClickBtn }
           data-testid="login-submit-button"
@@ -73,9 +75,9 @@ class Login extends React.Component {
       </form>
     );
     return (
-      <div data-testid="page-login">
+      <div className="mainDivLogin" data-testid="page-login">
         {
-          firstLoad ? meuForm : showLoading
+          firstLoad ? loginForm : showLoading
         }
         {
           loading === 'OK' ? <Redirect to="/search" /> : ''

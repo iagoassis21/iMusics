@@ -1,0 +1,35 @@
+.mainHeader {
+  display: flex;
+  justify-content: center;
+}
+
+.mainDivLogin {
+  display: flex;
+  justify-content: center;
+}
+
+.mainDivSearch {
+  display: flex;
+  justify-content: center;
+}
+
+.formLogin {
+  border: black solid 2px;
+  border-radius: 15px;
+  margin: 10px;
+  padding: 10px;
+}
+
+.inputLogin {
+  margin-left: 5px;
+}
+
+.loginBtn {
+  margin-left: 5px;
+}
+
+.loading {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
