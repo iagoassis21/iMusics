@@ -1,6 +1,12 @@
 .mainHeader {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.mainNav {
+  display: flex;
+  justify-content: space-between;
 }
 
 .mainDivLogin {
@@ -13,6 +19,10 @@
   justify-content: center;
 }
 
+.mainDivHeader {
+  display: flex;
+}
+
 .formLogin {
   border: black solid 2px;
   border-radius: 15px;
@@ -22,6 +32,41 @@
 
 .inputLogin {
   margin-left: 5px;
+}
+
+.trybeTunesTitle {
+  background-color: bisque;
+  border: black solid 2px;
+  border-radius: 15px;
+  padding: 15px;
+}
+
+.userNameInHeader {
+  background-color: bisque;
+  border: black solid 2px;
+  border-radius: 15px;
+  padding: 15px;
+}
+
+.navSearch {
+  background-color: bisque;
+  border: black solid 2px;
+  border-radius: 15px;
+  padding: 15px;
+}
+
+.navProfile {
+  background-color: bisque;
+  border: black solid 2px;
+  border-radius: 15px;
+  padding: 15px;
+}
+
+.navFavorites {
+  background-color: bisque;
+  border: black solid 2px;
+  border-radius: 15px;
+  padding: 15px;
 }
 
 .loginBtn {
