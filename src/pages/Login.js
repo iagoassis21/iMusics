@@ -35,10 +35,9 @@ class Login extends React.Component {
       { loading: '', firstLoad: false },
       async () => {
         const { loginName } = this.state;
-        const check = await createUser({ name: loginName });
-        console.log(check);
+        const checkResult = await createUser({ name: loginName });
         this.setState({
-          loading: check,
+          loading: checkResult,
         });
       },
     );
@@ -67,7 +66,7 @@ class Login extends React.Component {
           disabled={ this.validateSubmitBtn() }
           onClick={ this.onClickBtn }
           data-testid="login-submit-button"
-          type="submit"
+          type="button"
           id="loginBtn"
         >
           Entrar

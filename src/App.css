@@ -15,8 +15,26 @@
 }
 
 .mainDivSearch {
+  align-items: center;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+}
+
+.albumCards {
+  border: black solid 2px;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: fit-content;
+  padding: 15px;
+}
+
+.albumCard {
+  border: black solid 2px;
+  display: flex;
+  height: 150px;
+  justify-content: baseline;
+  margin: 15px;
+  max-width: 400px;
 }
 
 .mainDivHeader {

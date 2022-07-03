@@ -20,7 +20,6 @@ class Header extends React.Component {
     const getNameValueInPromisse = await getUser();
     const getNameValue = await (getNameValueInPromisse);
     const getNameKey = Object.values(getNameValue)[0];
-    console.log(getNameKey);
     this.setState({
       nameUserValue: getNameKey,
       loading: false,
