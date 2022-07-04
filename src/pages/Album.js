@@ -10,6 +10,7 @@ class Album extends React.Component {
     this.state = {
       albumAtual: [],
       firstIndex: [],
+      albumId: '',
     };
   }
 
@@ -24,11 +25,12 @@ class Album extends React.Component {
     this.setState({
       albumAtual: musicsFromAlbumId,
       firstIndex: musicsFromAlbumId[0],
+      albumId: musicsFromAlbumId[0].collectionId,
     });
   };
 
   render() {
-    const { albumAtual, firstIndex } = this.state;
+    const { albumAtual, firstIndex, albumId } = this.state;
     return (
       <div data-testid="page-album">
         {
@@ -48,10 +50,13 @@ class Album extends React.Component {
         }
 
         {
-          albumAtual.slice(1).map((music) => (
+          albumAtual.slice(1).map((music, index) => (
             <MusicCard
+              albumId={ albumId }
+              trackIndex={ index }
               trackName={ music.trackName }
               previewUrl={ music.previewUrl }
+              trackId={ music.trackId }
               key={ music.trackName }
             />
           ))
