@@ -108,7 +108,6 @@ class Search extends React.Component {
                     alt={ album.collectionName }
                   />
                   <p>
-                    {' '}
                     { album.collectionName }
                   </p>
                   <p>

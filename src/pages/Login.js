@@ -38,6 +38,7 @@ class Login extends React.Component {
         const checkResult = await createUser({ name: loginName });
         this.setState({
           loading: checkResult,
+          loginName: '',
         });
       },
     );
