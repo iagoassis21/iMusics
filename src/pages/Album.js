@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MusicCard from '../components/MusicCard';
 import getMusics from '../services/musicsAPI';
+import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class Album extends React.Component {
   constructor() {
@@ -10,7 +11,7 @@ class Album extends React.Component {
     this.state = {
       albumAtual: [],
       firstIndex: [],
-      albumId: '',
+      favoritedSongs: [],
     };
   }
 
@@ -22,38 +23,34 @@ class Album extends React.Component {
     const { match } = this.props;
     const { id } = match.params;
     const musicsFromAlbumId = await getMusics(id);
+    const getfavorites = await getFavoriteSongs();
     this.setState({
       albumAtual: musicsFromAlbumId,
       firstIndex: musicsFromAlbumId[0],
-      albumId: musicsFromAlbumId[0].collectionId,
+      favoritedSongs: getfavorites,
     });
   };
 
   render() {
-    const { albumAtual, firstIndex, albumId } = this.state;
+    const { albumAtual, firstIndex, favoritedSongs } = this.state;
     return (
       <div data-testid="page-album">
         {
           <section>
             <img src={ firstIndex.artworkUrl100 } alt={ firstIndex.collectionName } />
             <p data-testid="album-name">
-              {' '}
               { firstIndex.collectionName }
-              {' '}
             </p>
             <p data-testid="artist-name">
-              {' '}
               { firstIndex.artistName }
-              {' '}
             </p>
           </section>
         }
 
         {
-          albumAtual.slice(1).map((music, index) => (
+          albumAtual.slice(1).map((music) => (
             <MusicCard
-              albumId={ albumId }
-              trackIndex={ index }
+              favoritedSongs={ favoritedSongs }
               trackName={ music.trackName }
               previewUrl={ music.previewUrl }
               trackId={ music.trackId }
