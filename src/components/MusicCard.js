@@ -27,15 +27,18 @@ class MusicCard extends React.Component {
   }
 
   getFavSongs = async () => {
-    const { trackId } = this.props;
     this.setState((prevState) => ({ favorited: !prevState, loading: true }),
       async () => {
+        const { trackId, updateFavoriteList } = this.props;
         const { favorited } = this.state;
-        const getObjectMusic = await getMusics(trackId);
+        // const getObjectMusic = await getMusics(trackId);
         if (favorited) {
-          await addSong(getObjectMusic[0]);
-        } else await removeSong(getObjectMusic[0]);
-        console.log(getObjectMusic);
+          await addSong(this.props);
+        } else {
+          updateFavoriteList();
+          await removeSong(this.props);
+        }
+        updateFavoriteList();
         this.setState({
           loading: false,
         });
@@ -45,8 +48,6 @@ class MusicCard extends React.Component {
   checkSomething = () => {
     const { favoritedSongs, trackId } = this.props;
     const check = favoritedSongs.some((track) => track.trackId === trackId);
-    console.log(favoritedSongs);
-    console.log(check);
     this.setState({
       favorited: check,
     });
@@ -55,41 +56,43 @@ class MusicCard extends React.Component {
   render() {
     const { trackName, previewUrl, trackId } = this.props;
     const { favorited, loading } = this.state;
+    const TUDO = (
+      <div>
+        <p>
+          {' '}
+          { trackName }
+        </p>
+        <audio data-testid="audio-component" src={ previewUrl } controls>
+          <track kind="captions" />
+          O seu navegador não suporta o elemento
+          {' '}
+          {' '}
+          <code>audio</code>
+          .
+        </audio>
+        <form>
+          <label
+            htmlFor={ trackId }
+            data-testid={ `checkbox-music-${trackId}` }
+          >
+            Favorita
+            <input
+              name="favorited"
+              onChange={ this.handleChange }
+              checked={ favorited }
+              onClick={ this.getFavSongs }
+              id={ trackId }
+              type="checkbox"
+            />
+          </label>
+        </form>
+      </div>
+    );
     return (
       <section>
-        <div>
-          <p>
-            {' '}
-            { trackName }
-          </p>
-          <audio data-testid="audio-component" src={ previewUrl } controls>
-            <track kind="captions" />
-            O seu navegador não suporta o elemento
-            {' '}
-            {' '}
-            <code>audio</code>
-            .
-          </audio>
-          <form>
-            <label
-              htmlFor={ trackId }
-              data-testid={ `checkbox-music-${trackId}` }
-            >
-              Favorita
-              <input
-                name="favorited"
-                onChange={ this.handleChange }
-                checked={ favorited }
-                onClick={ this.getFavSongs }
-                id={ trackId }
-                type="checkbox"
-              />
-            </label>
-            {
-              loading && <Loading />
-            }
-          </form>
-        </div>
+        {
+          loading ? <Loading /> : TUDO
+        }
       </section>
     );
   }

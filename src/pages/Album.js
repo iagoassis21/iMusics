@@ -50,11 +50,12 @@ class Album extends React.Component {
         {
           albumAtual.slice(1).map((music) => (
             <MusicCard
-              favoritedSongs={ favoritedSongs }
               trackName={ music.trackName }
               previewUrl={ music.previewUrl }
               trackId={ music.trackId }
               key={ music.trackName }
+              favoritedSongs={ favoritedSongs }
+              updateFavoriteList={ () => { } }
             />
           ))
         }
@@ -63,16 +64,12 @@ class Album extends React.Component {
   }
 }
 
-Album.defaultProps = {
-  match: {},
-};
-
 Album.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string.isRequired,
     }),
   }),
-};
+}.isRequired;
 
 export default Album;
