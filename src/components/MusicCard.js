@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import getMusics from '../services/musicsAPI';
 import { addSong, removeSong } from '../services/favoriteSongsAPI';
 import Loading from './Loading';
 
@@ -29,7 +28,7 @@ class MusicCard extends React.Component {
   getFavSongs = async () => {
     this.setState((prevState) => ({ favorited: !prevState, loading: true }),
       async () => {
-        const { trackId, updateFavoriteList } = this.props;
+        const { updateFavoriteList } = this.props;
         const { favorited } = this.state;
         // const getObjectMusic = await getMusics(trackId);
         if (favorited) {
@@ -102,6 +101,7 @@ MusicCard.propTypes = {
   trackName: PropTypes.string.isRequired,
   previewUrl: PropTypes.string.isRequired,
   trackId: PropTypes.number.isRequired,
+  updateFavoriteList: PropTypes.func.isRequired,
   favoritedSongs: PropTypes.arrayOf(
     PropTypes.object.isRequired,
   ).isRequired,
