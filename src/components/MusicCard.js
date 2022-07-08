@@ -28,14 +28,21 @@ class MusicCard extends React.Component {
   getFavSongs = async () => {
     this.setState((prevState) => ({ favorited: !prevState, loading: true }),
       async () => {
-        const { updateFavoriteList } = this.props;
+        const { updateFavoriteList, previewUrl, trackId, trackName } = this.props;
         const { favorited } = this.state;
-        // const getObjectMusic = await getMusics(trackId);
         if (favorited) {
-          await addSong(this.props);
+          await addSong({
+            previewUrl,
+            trackId,
+            trackName,
+          });
         } else {
           updateFavoriteList();
-          await removeSong(this.props);
+          await removeSong({
+            previewUrl,
+            trackId,
+            trackName,
+          });
         }
         updateFavoriteList();
         this.setState({

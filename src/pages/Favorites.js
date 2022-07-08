@@ -32,7 +32,6 @@ class Favorites extends React.Component {
 
   render() {
     const { allFavoritedSongs, loading } = this.state;
-    console.log(allFavoritedSongs);
     return (
       <div data-testid="page-favorites">
         <section>
